@@ -29,7 +29,7 @@ function Content() {
   ];
 
   return (
-    <div className="container m-auto pt-16 max-w-5xl">
+    <div className="container m-auto mt-16 max-w-5xl">
       <div className="flex flex-col px-8 md:px-32 lg:px-0 items-center lg:flex-row lg:flex-wrap gap-8">
         {posts.map((post) => (
           <Listing key={post.id} rating={post.rating} title={post.title} />

@@ -22,8 +22,6 @@ function RatingBar({ rating }) {
     }
   };
 
-  console.log(getRating(rating));
-
   return (
     <div className="">
       <div className="flex w-full justify-between mt-4 items-center">
