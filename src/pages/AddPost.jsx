@@ -1,9 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const AddPost = () => {
   const [title, setTitle] = useState("AITBP ");
+  const [titleError, setTitleError] = useState("");
   const [post, setPost] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
+
+  useEffect(() => {
+    if (title.startsWith("AITBP") && title.split(" ").length > 2) {
+      console.log("title is proper");
+    }
+  }, [title, post]);
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
 
   return (
     <div className="AddPost">
@@ -11,13 +22,14 @@ const AddPost = () => {
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text">Title</span>
+            {titleError && <span className="text-red-600">{titleError}</span>}
           </label>
           <input
             type="text"
-            placeholder="The Title of Your Post"
+            placeholder='The Title of Your Post Must Start With "AITBP"'
             className="input input-bordered w-full bg-white mb-4"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => handleTitleChange(e)}
           />
           <div className="form-control">
             <label className="label">
