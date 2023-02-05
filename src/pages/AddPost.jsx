@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 
 const AddPost = () => {
-  const [title, setTitle] = useState("AITBP ");
-  const [titleError, setTitleError] = useState("");
+  const [title, setTitle] = useState("AITBP if ");
   const [post, setPost] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -28,7 +27,7 @@ const AddPost = () => {
 
   return (
     <div className="AddPost">
-      <form action="" className="w-1/2 m-auto mt-8">
+      <form action="" className="md:w-1/2 px-8 md:px-0 w-full m-auto mt-8">
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text">
@@ -38,7 +37,6 @@ const AddPost = () => {
                 (must start with "AITB" and be at least three words)
               </span>
             </span>
-            {titleError && <span className="text-red-600">{titleError}</span>}
           </label>
           <input
             type="text"

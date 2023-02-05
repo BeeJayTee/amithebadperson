@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="Navbar container m-auto">
-      <div className="pt-8 flex justify-start gap-8">
+    <div className="Navbar container m-auto px-8 md:px-0">
+      <div className="pt-8 flex justify-between md:justify-start gap-8">
         <Link className="font-bold" to="/">
           amithebadperson
         </Link>
