@@ -1,33 +1,51 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddPost = () => {
   const [title, setTitle] = useState("AITBP if ");
-  const [post, setPost] = useState("");
+  const [content, setContent] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let properTitle = false;
     let properPost = false;
-    title.startsWith("AITBP") && title.split(" ").length > 2
+    title.startsWith("AITBP") && title.split(" ").length > 3
       ? (properTitle = true)
       : (properTitle = false);
 
-    post.split(" ").length > 24 ? (properPost = true) : (properPost = false);
+    content.split(" ").length > 24 ? (properPost = true) : (properPost = false);
 
     if (properTitle && properPost) {
       setIsDisabled(false);
     }
     properTitle && properPost ? setIsDisabled(false) : setIsDisabled(true);
-  }, [title, post]);
+  }, [title, content]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("submitted");
+    const response = await fetch("http://localhost:4141/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: title,
+        content: content,
+      }),
+    });
+    const json = await response.json();
+    console.log(response);
+    if (response.ok) {
+      navigate("/");
+    }
   };
 
   return (
     <div className="AddPost">
-      <form action="" className="md:w-1/2 px-8 md:px-0 w-full m-auto mt-8">
+      <form
+        action=""
+        className="md:w-1/2 px-8 md:px-0 w-full m-auto mt-8"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text">
@@ -58,8 +76,8 @@ const AddPost = () => {
             <textarea
               className="textarea textarea-bordered h-64 w-full bg-white mb-8"
               placeholder="Write Your Post Here (minimum 50 words)"
-              value={post}
-              onChange={(e) => setPost(e.target.value)}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
             ></textarea>
           </div>
           <button
@@ -69,7 +87,6 @@ const AddPost = () => {
                 : "text-slate-500 hover:text-slate-800"
             } `}
             disabled={isDisabled}
-            onClick={(e) => handleSubmit(e)}
           >
             Submit
           </button>
