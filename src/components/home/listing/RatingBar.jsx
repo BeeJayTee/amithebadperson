@@ -5,7 +5,9 @@ function RatingBar({ rating }) {
 
   const getRating = (rating) => {
     const difFromFifty = 50 - rating;
-    if (Math.abs(difFromFifty) < 10) {
+    if (difFromFifty === 0) {
+      return "neutral";
+    } else if (Math.abs(difFromFifty) < 10) {
       return "relatively neutral";
     } else if (difFromFifty > 0) {
       let final;
