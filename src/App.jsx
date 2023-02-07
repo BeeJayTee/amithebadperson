@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Content from "./components/home/Content";
+import Home from "./pages/Home";
 import Navbar from "./components/home/NavBar";
 import AddPost from "./pages/AddPost";
 import Post from "./pages/Post";
@@ -11,7 +11,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Content />} />
+          <Route path="/" element={<Home />} />
           <Route path="/add" element={<AddPost />} />
           <Route path="/post/:id" element={<Post />} />
         </Routes>

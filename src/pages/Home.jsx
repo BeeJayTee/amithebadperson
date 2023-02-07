@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import Listing from "./Listing";
+import Listing from "../components/home/Listing";
 
 function Content() {
   const [posts, setPosts] = useState([]);
