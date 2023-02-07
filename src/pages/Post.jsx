@@ -1,5 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+import Rating from "../components/post/Rating";
 
 const Post = () => {
   const { id } = useParams();
@@ -18,44 +20,19 @@ const Post = () => {
     fetchPost();
   }, []);
 
-  const handleClick = (e) => {
-    const str = e.target.innerHTML;
-    if (str.startsWith("not")) {
-      console.log("not the bad person");
-    } else if (str.startsWith("is")) {
-      console.log("is the bad person");
-    }
-  };
-
   return (
     <div className="Post">
       <div className="container m-auto mt-16 max-w-5xl">
-        <div className="content bg-slate-100 px-8 md:px-8 py-4 flex justify-between">
-          <div className="title-content">
-            <h1 className="text-3xl mb-4">{title}</h1>
-            <div className="rating flex gap-4 text-center">
-              <p
-                className="text-xs border border-slate-400 hover:border-[#2b2d42] hover:cursor-pointer p-2"
-                onClick={(e) => handleClick(e)}
-              >
-                not the
-                <br />
-                bad person
-              </p>
-              <p
-                className="text-xs border border-slate-400 hover:border-[#d90429] hover:cursor-pointer p-2"
-                onClick={(e) => handleClick(e)}
-              >
-                is the
-                <br />
-                bad person
-              </p>
-            </div>
+        <div className="content bg-slate-50 mb-8 px-8 py-4 flex flex-col md:justify-between md:flex-row border-slate-400 border-t-4 md:border-l-4">
+          <div className="title-content flex flex-col items-center md:items-start">
+            <h1 className="text-3xl mb-4 text-slate-900">{title}</h1>
+            <Rating id={id} />
           </div>
-          <div className="body w-1/2">
-            <p>{content}</p>
+          <div className="body md:w-1/2">
+            <p className="text-slate-800">{content}</p>
           </div>
         </div>
+        <Link to="/">Back Home</Link>
       </div>
     </div>
   );

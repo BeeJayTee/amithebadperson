@@ -18,6 +18,17 @@ const postSchema = new Schema({
   },
   popularity: {
     type: Number,
+    required: true,
+    default: 0,
+  },
+  not: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  is: {
+    type: Number,
+    required: true,
     default: 0,
   },
 });

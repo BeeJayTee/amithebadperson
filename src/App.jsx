@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Navbar from "./components/home/NavBar";
+import Navbar from "./components/NavBar";
 import AddPost from "./pages/AddPost";
 import Post from "./pages/Post";
 
 function App() {
   return (
-    <div className="w-screen h-screen bg-[#f8f9fa]">
+    <div className="w-screen h-screen bg-slate-100">
       <Router>
         <Navbar />
         <Routes>

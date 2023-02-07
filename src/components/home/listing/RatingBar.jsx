@@ -37,7 +37,7 @@ function RatingBar({ rating }) {
           Yes<br></br>Bad<br></br>Person
         </p>
       </div>
-      <div className="flex h-8 bg-gradient-to-r from-[#2b2d42] to-[#d90429]">
+      <div className="flex h-8 bg-gradient-to-r from-blue-900 to-red-700">
         <div className="border-r-4" style={styles}></div>
       </div>
     </div>
