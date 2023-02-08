@@ -45,16 +45,6 @@ const updatePost = async (req, res) => {
       const rating = Math.round((post.is / post.popularity) * 100);
       post.rating = rating;
       await post.save();
-      // post.$inc({ is: currentRating === "is" ? -1 : 0 });
-      // console.log(post.not + post.is, "pop total");
-      // post.save();
-      // const post = await Post.findByIdAndUpdate(id, {
-      //   $inc: {
-      //     popularity: currentRating === "is" ? 0 : 1,
-      //     not: 1,
-      //     is: currentRating === "is" ? -1 : 0,
-      //   },
-      // });
       res.status(200).json({ message: "updated" });
     }
     if (value === "is") {
@@ -65,16 +55,6 @@ const updatePost = async (req, res) => {
       const rating = Math.round((post.is / post.popularity) * 100);
       post.rating = rating;
       await post.save();
-      // const post = await Post.findOneAndUpdate(
-      //   { _id: id },
-      //   {
-      //     $inc: {
-      //       popularity: currentRating === "not" ? 0 : 1,
-      //       is: 1,
-      //       not: currentRating === "not" ? -1 : 0,
-      //     },
-      //   }
-      // );
       res.status(200).json({ message: "updated" });
     }
   } catch (err) {
