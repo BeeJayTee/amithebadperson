@@ -30,7 +30,6 @@ const Rating = ({ id }) => {
     });
     const json = await response.json();
     if (response.ok) {
-      console.log(json.message);
       addToLocalStorage(id, query.value);
       setRatingType(query.value);
     }
@@ -39,7 +38,6 @@ const Rating = ({ id }) => {
   return (
     <div className="rating flex gap-4 text-center mb-8">
       <p
-        // className="text-[.75rem] bg-blue-50 text-blue-900 hover:text-blue-800 tracking-tighter font-bold border border-blue-600 hover:border-blue-900 hover:cursor-pointer p-2"
         className={`text-[.75rem]  tracking-tighter font-bold border p-2 ${
           ratingType === "not"
             ? "bg-blue-400 border-blue-900 hover:cursor-default text-blue-800"

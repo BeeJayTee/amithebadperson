@@ -36,30 +36,45 @@ const addPost = async (req, res) => {
 // const update post after rating vote
 const updatePost = async (req, res) => {
   const { id, value, currentRating } = req.body;
-  console.log(currentRating);
   try {
     if (value === "not") {
-      const post = await Post.findByIdAndUpdate(id, {
-        $inc: {
-          popularity: currentRating === "is" ? 0 : 1,
-          not: 1,
-          is: currentRating === "is" ? -1 : 0,
-        },
-      });
+      const post = await Post.findById(id);
+      post.not += 1;
+      post.is += currentRating === "is" ? -1 : 0;
+      post.popularity = post.is + post.not;
+      const rating = Math.round((post.is / post.popularity) * 100);
+      post.rating = rating;
+      await post.save();
+      // post.$inc({ is: currentRating === "is" ? -1 : 0 });
+      // console.log(post.not + post.is, "pop total");
+      // post.save();
+      // const post = await Post.findByIdAndUpdate(id, {
+      //   $inc: {
+      //     popularity: currentRating === "is" ? 0 : 1,
+      //     not: 1,
+      //     is: currentRating === "is" ? -1 : 0,
+      //   },
+      // });
       res.status(200).json({ message: "updated" });
     }
     if (value === "is") {
-      const post = await Post.findOneAndUpdate(
-        { _id: id },
-        {
-          $inc: {
-            popularity: currentRating === "not" ? 0 : 1,
-            is: 1,
-            not: currentRating === "not" ? -1 : 0,
-          },
-        }
-      );
-      post.update();
+      const post = await Post.findById(id);
+      post.is += 1;
+      post.not += currentRating === "not" ? -1 : 0;
+      post.popularity = post.is + post.not;
+      const rating = Math.round((post.is / post.popularity) * 100);
+      post.rating = rating;
+      await post.save();
+      // const post = await Post.findOneAndUpdate(
+      //   { _id: id },
+      //   {
+      //     $inc: {
+      //       popularity: currentRating === "not" ? 0 : 1,
+      //       is: 1,
+      //       not: currentRating === "not" ? -1 : 0,
+      //     },
+      //   }
+      // );
       res.status(200).json({ message: "updated" });
     }
   } catch (err) {
