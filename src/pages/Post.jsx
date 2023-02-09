@@ -11,7 +11,7 @@ const Post = () => {
   useEffect(() => {
     const fetchPost = async () => {
       const response = await fetch(
-        `http://aitbpapi.thebrandontucker.com/posts/${id}`
+        `https://aitbpapi.onrender.com//posts/${id}`
       );
       const json = await response.json();
       if (response.ok) {

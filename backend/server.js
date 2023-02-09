@@ -7,7 +7,7 @@ const postRoutes = require("./routes/posts");
 
 // middleware
 app.use(express.json());
-// app.use(cors({ origin: process.env.REMOTE_CLIENT_APP, credentials: true }));
+app.use(cors());
 
 // quick custom log middleware
 app.use((req, res, next) => {

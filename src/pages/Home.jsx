@@ -8,9 +8,9 @@ function Content() {
 
   useEffect(() => {
     const getPosts = async () => {
-      const response = await fetch(
-        "http://aitbpapi.thebrandontucker.com/posts"
-      );
+      const response = await fetch("https://aitbpapi.onrender.com/posts", {
+        mode: "no-cors",
+      });
       const json = await response.json();
       if (response.ok) {
         json.length < 10

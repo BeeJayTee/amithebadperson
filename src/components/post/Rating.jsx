@@ -18,7 +18,7 @@ const Rating = ({ id }) => {
     let query = {};
     str.startsWith("not") ? (query.value = "not") : (query.value = "is");
     const response = await fetch(
-      "http://aitbpapi.thebrandontucker.com/posts/update",
+      "https://aitbpapi.onrender.com//posts/update",
       {
         method: "PATCH",
         headers: {
