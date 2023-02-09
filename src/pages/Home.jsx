@@ -8,7 +8,9 @@ function Content() {
 
   useEffect(() => {
     const getPosts = async () => {
-      const response = await fetch("http://localhost:4141/posts");
+      const response = await fetch(
+        "http://aitbpapi.thebrandontucker.com/posts"
+      );
       const json = await response.json();
       if (response.ok) {
         json.length < 10

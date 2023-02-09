@@ -17,17 +17,20 @@ const Rating = ({ id }) => {
     const str = e.target.innerHTML;
     let query = {};
     str.startsWith("not") ? (query.value = "not") : (query.value = "is");
-    const response = await fetch("http://localhost:4141/posts/update", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id,
-        value: query.value,
-        currentRating: ratingType,
-      }),
-    });
+    const response = await fetch(
+      "http://aitbpapi.thebrandontucker.com/posts/update",
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          value: query.value,
+          currentRating: ratingType,
+        }),
+      }
+    );
     const json = await response.json();
     if (response.ok) {
       addToLocalStorage(id, query.value);

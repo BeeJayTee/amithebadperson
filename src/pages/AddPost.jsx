@@ -25,14 +25,17 @@ const AddPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(content.split("/n"));
-    const response = await fetch("http://localhost:4141/posts/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: title,
-        content: content,
-      }),
-    });
+    const response = await fetch(
+      "http://aitbpapi.thebrandontucker.com/posts/add",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: title,
+          content: content,
+        }),
+      }
+    );
     const json = await response.json();
     console.log(response);
     if (response.ok) {

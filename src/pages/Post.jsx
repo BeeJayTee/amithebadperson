@@ -10,7 +10,9 @@ const Post = () => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const response = await fetch(`http://localhost:4141/posts/${id}`);
+      const response = await fetch(
+        `http://aitbpapi.thebrandontucker.com/posts/${id}`
+      );
       const json = await response.json();
       if (response.ok) {
         setTitle(json.title);
