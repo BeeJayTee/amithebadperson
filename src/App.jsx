@@ -7,7 +7,7 @@ import Post from "./pages/Post";
 
 function App() {
   return (
-    <div className="w-screen h-screen bg-slate-100">
+    <div className="min-w-screen min-h-screen bg-slate-100">
       <Router>
         <Navbar />
         <Routes>

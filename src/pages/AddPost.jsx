@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddPost = () => {
-  const [title, setTitle] = useState("AITBP if ");
+  const [title, setTitle] = useState("AITBP for ");
   const [content, setContent] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
   const navigate = useNavigate();
@@ -24,6 +24,7 @@ const AddPost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(content.split("/n"));
     const response = await fetch("http://localhost:4141/posts/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
