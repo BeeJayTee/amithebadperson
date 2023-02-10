@@ -5,6 +5,10 @@ const mongoose = require("mongoose");
 const getPosts = async (req, res) => {
   try {
     const posts = await Post.find({});
+    res.set({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    });
     res.status(200).json(posts);
   } catch (err) {
     res.status(400).json({ error: err.message });
