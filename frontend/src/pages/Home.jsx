@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Puff } from "react-loading-icons";
 
 import Listing from "../components/home/Listing";
 
 function Content() {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getPosts = async () => {
+      setIsLoading(true);
       const response = await fetch("https://aitbpapi.onrender.com/posts");
       const json = await response.json();
       if (response.ok) {
+        setIsLoading(false);
         json.length < 10
           ? setPosts(json.reverse())
           : setPosts(json.reverse().slice(0, 9));
@@ -37,14 +41,21 @@ function Content() {
         </Link>
       </div>
       <div className="flex flex-col px-8 md:px-32 lg:px-0 items-center lg:flex-row lg:flex-wrap gap-8">
-        {posts.map((post) => (
-          <Listing
-            key={post._id}
-            rating={post.rating}
-            title={post.title}
-            id={post._id}
-          />
-        ))}
+        {isLoading && (
+          <div className="flex flex-col justify-center m-auto">
+            <p className="text-xs text-slate-400">Loading</p>
+            <Puff stroke="#475569" />
+          </div>
+        )}
+        {!isLoading &&
+          posts.map((post) => (
+            <Listing
+              key={post._id}
+              rating={post.rating}
+              title={post.title}
+              id={post._id}
+            />
+          ))}
       </div>
     </div>
   );
